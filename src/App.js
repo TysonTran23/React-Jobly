@@ -7,6 +7,7 @@ import NavBar from "./navbar/NavBar";
 import UserContext from "./auth/UserContext";
 import JoblyApi from "./api/api";
 import { jwtDecode } from "jwt-decode";
+import { saveToken, getToken, removeToken } from "./token/tokenService";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -15,6 +16,7 @@ function App() {
   useEffect(() => {
     async function getCurrentUser() {
       try {
+        const token = getToken();
         if (token) {
           const { username } = jwtDecode(token);
           JoblyApi.token = token;
@@ -23,6 +25,7 @@ function App() {
         }
       } catch (e) {
         console.log(e);
+        logout();
       }
     }
     getCurrentUser();
@@ -32,7 +35,7 @@ function App() {
     try {
       let loginUserToken = await JoblyApi.login(username, password);
       setToken(loginUserToken);
-      JoblyApi.token = loginUserToken;
+      saveToken(loginUserToken);
     } catch (e) {
       console.log(e);
     }
@@ -42,6 +45,7 @@ function App() {
     try {
       let signupUserToken = await JoblyApi.signup(data);
       setToken(signupUserToken);
+      saveToken(signupUserToken);
       JoblyApi.token = signupUserToken;
     } catch (e) {
       console.log(e);
@@ -52,7 +56,7 @@ function App() {
     try {
       setCurrentUser(null);
       setToken(null);
-      JoblyApi.token = null;
+      removeToken();
     } catch (e) {
       console.log(e);
     }
