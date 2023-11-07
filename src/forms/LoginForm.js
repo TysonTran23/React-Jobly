@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import UserContext from "../auth/UserContext";
 
 const LoginForm = () => {
+  const { login } = useContext(UserContext);
+
   const INITIAL_STATE = {
     username: "",
     password: "",
@@ -18,6 +21,7 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    login(formData.username, formData.password);
   };
 
   return (
@@ -42,6 +46,7 @@ const LoginForm = () => {
           value={formData.password}
         />
       </label>
+      <button>Login</button>
     </form>
   );
 };

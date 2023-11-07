@@ -1,9 +1,19 @@
 import React from "react";
+import Job from "./Job";
 
-const JobsList = () => {
+const JobsList = ({ jobs, companyName }) => {
   return (
     <div>
-      <h1>Jobs List</h1>
+      <div>
+        {jobs.map((j) => (
+          <Job
+            key={j.id}
+            title={j.title}
+            salary={j.salary}
+            equity={j.equity}
+          />
+        ))}
+      </div>
     </div>
   );
 };

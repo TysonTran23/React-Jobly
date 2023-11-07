@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import UserContext from "../auth/UserContext";
 
 const ProfileForm = () => {
+  const { signup } = useContext(UserContext);
+
   const INITIAL_STATE = {
     username: "",
     password: "",
@@ -21,6 +24,7 @@ const ProfileForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    signup(formData);
   };
 
   return (
@@ -75,7 +79,7 @@ const ProfileForm = () => {
           onChange={handleChange}
         />
       </label>
-      <button>Submit</button>
+      <button>Sign Up</button>
     </form>
   );
 };
