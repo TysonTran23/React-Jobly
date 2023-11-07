@@ -72,13 +72,13 @@ class JoblyApi {
 
   //** Signup for the website */
   static async signup(data) {
-    let res = await this.request("auth/register", data , "post");
+    let res = await this.request("auth/register", data, "post");
     return res.token;
   }
 
   //** Save user profile page */
-  static async saveUser(username) {
-    let res = await this.request(`users/${username}`, {}, "patch");
+  static async saveUser(username, data) {
+    let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
   }
 }

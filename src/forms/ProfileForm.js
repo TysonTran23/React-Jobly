@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import UserContext from "../auth/UserContext";
+import JoblyApi from "../api/api";
 
 const ProfileForm = () => {
+  const { currentUser } = useContext(UserContext);
+
   const INITIAL_STATE = {
-    username: "",
-    firstName: "",
-    lastName: "",
-    email: "",
+    firstName: currentUser.firstName,
+    lastName: currentUser.lastName,
+    email: currentUser.email,
   };
 
   const [formData, setFormData] = useState(INITIAL_STATE);
@@ -18,22 +21,30 @@ const ProfileForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let userData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      password: formData.password,
+    };
+
+    let username = formData.username;
+    let updatedUser;
+
+    try {
+      updatedUser = await JoblyApi.saveUser(username, userData);
+    } catch (e) {
+      console.log(e);
+    }
+
+    setFormData((f) => ({ ...f }));
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="username">
-        <input
-          id="username"
-          name="username"
-          type="text"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-      </label>
       <label htmlFor="firstName">
         <input
           id="firstName"
