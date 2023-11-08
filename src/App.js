@@ -12,6 +12,7 @@ import { saveToken, getToken, removeToken } from "./token/tokenService";
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [jobsAppliedForID, setJobsAppliedForID] = useState(new Set([]));
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -62,11 +63,33 @@ function App() {
     }
   }
 
+  function hasAppliedToJob(id) {
+    return jobsAppliedForID.has(id);
+  }
+
+  async function applyingToJob(id) {
+    try {
+      if (hasAppliedToJob(id)) return;
+      JoblyApi.applyToJob(currentUser.username, id);
+      setJobsAppliedForID(new Set([...jobsAppliedForID, id]));
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <div className="App">
       <BrowserRouter>
-        <UserContext.Provider value={{ currentUser, login, logout, signup }}>
+        <UserContext.Provider
+          value={{
+            currentUser,
+            login,
+            logout,
+            signup,
+            applyingToJob,
+            hasAppliedToJob,
+          }}
+        >
           <NavBar />
           <AppRoutes />
         </UserContext.Provider>
