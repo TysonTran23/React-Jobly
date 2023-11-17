@@ -22,7 +22,6 @@ const CompaniesList = () => {
 
   return (
     <div className="Companies-List">
-      <h1>Companies List</h1>
       <SearchForm />
       <div className="CompaniesList-List">
         {companies.map((c) => (

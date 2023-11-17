@@ -6,6 +6,7 @@ const ProfileForm = () => {
   const { currentUser } = useContext(UserContext);
 
   const INITIAL_STATE = {
+    username: currentUser.username,
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
     email: currentUser.email,
@@ -35,6 +36,7 @@ const ProfileForm = () => {
     let updatedUser;
 
     try {
+      console.log(username);
       updatedUser = await JoblyApi.saveUser(username, userData);
     } catch (e) {
       console.log(e);

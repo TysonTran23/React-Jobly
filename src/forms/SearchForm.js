@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./SearchForm.css"
 
 const SearchForm = () => {
   const initialState = {
@@ -20,6 +21,7 @@ const SearchForm = () => {
     <form onSubmit={handleSubmit}>
       <label htmlFor="term">
         <input
+        className="input-box"
           type="text"
           id="term"
           name="term"
@@ -28,7 +30,7 @@ const SearchForm = () => {
           onChange={handleChange}
         />
       </label>
-      <button>Submit</button>
+      <button className="form-button">Submit</button>
     </form>
   );
 };

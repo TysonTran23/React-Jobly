@@ -69,8 +69,9 @@ function App() {
 
   async function applyingToJob(id) {
     try {
+      console.log(id);
       if (hasAppliedToJob(id)) return;
-      JoblyApi.applyToJob(currentUser.username, id);
+      await JoblyApi.applyToJob(currentUser.username, id);
       setJobsAppliedForID(new Set([...jobsAppliedForID, id]));
     } catch (e) {
       console.log(e);

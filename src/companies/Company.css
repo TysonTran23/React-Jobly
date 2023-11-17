@@ -1,0 +1,38 @@
+/* Company.css */
+.company-card {
+    border: 1px solid #cccccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f9f9f9; /* light grey background */
+  }
+  
+  .company-details {
+    text-align: left;
+    flex-grow: 1;
+  }
+  
+  .company-logo {
+    max-width: 100px; /* Adjust the logo size as needed */
+    max-height: 100px;
+    object-fit: contain; /* Keeps the aspect ratio of the logo */
+    margin-left: 20px;
+  }
+  
+  @media (max-width: 800px) {
+    .company-card {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .company-logo {
+      margin-top: 10px;
+      margin-left: 0;
+    }
+  }
+  

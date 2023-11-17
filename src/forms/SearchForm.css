@@ -1,0 +1,12 @@
+.input-box {
+  width: 500px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.form-button {
+  height: 31px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(26, 160, 243);
+}

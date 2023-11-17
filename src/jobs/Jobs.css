@@ -1,0 +1,51 @@
+/* Jobs.css */
+.job-card {
+    border: 1px solid #cccccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f9f9f9; /* light grey background */
+  }
+  
+  .job-details {
+    text-align: left;
+    flex-grow: 1;
+    margin-right: 20px;
+  }
+  
+  .job-details li {
+    list-style-type: none; /* removes bullet points */
+  }
+  
+  .job-apply-button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .job-apply-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  @media (max-width: 800px) {
+    .job-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .job-details {
+      text-align: left;
+      margin-right: 0;
+    }
+  
+    .job-apply-button {
+      align-self: center;
+      margin-top: 10px;
+    }
+  }
+  

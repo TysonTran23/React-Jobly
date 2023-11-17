@@ -78,6 +78,7 @@ class JoblyApi {
 
   //** Save user profile page */
   static async saveUser(username, data) {
+    console.log("DATA:", data);
     let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
   }

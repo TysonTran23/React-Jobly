@@ -1,0 +1,11 @@
+.NavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.NavBar .navItems a,
+.NavBar .navItems button {
+  margin-left: 10px;
+}

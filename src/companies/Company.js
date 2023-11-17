@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Company.css";
 
 const Company = ({ name, description, logoUrl, handle }) => {
   return (
     <Link className="Company-Link" to={`/companies/${handle}`}>
-      <div>
-        <h2 className="company-card">
-          {name}
-          {logoUrl && <img src={logoUrl} className="company-logo" />}
-        </h2>
-        <p>{description}</p>
+      <div className="company-card">
+        <div className="company-details">
+          <h2 className="company-name">{name}</h2>
+          <p>{description}</p>
+        </div>
+        {logoUrl && (
+          <img src={logoUrl} alt={`${name} logo`} className="company-logo" />
+        )}
       </div>
     </Link>
   );
